@@ -21,8 +21,8 @@ services:
       - mailpit
       {%- endif %}
     volumes:
-      - {{ cookiecutter.project_slug }}_local_django_venv:/app/.venv
       - .:/app:z
+      - {{ cookiecutter.project_slug }}_local_django_venv:/app/.venv
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
