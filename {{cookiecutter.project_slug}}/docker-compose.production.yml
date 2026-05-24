@@ -7,9 +7,7 @@ volumes:
   {%- if cookiecutter.cloud_provider == 'None' %}
   production_django_media: {}
   {%- endif %}
-  {% if cookiecutter.use_celery == 'y' %}
   production_redis_data: {}
-  {% endif %}
 
 
 services:
@@ -66,6 +64,10 @@ services:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
     image: {{ cookiecutter.project_slug }}_production_postgres
+    {%- if cookiecutter.postgresql_version|int >= 18 %}
+    environment:
+      - PGDATA=/var/lib/postgresql/{{ cookiecutter.postgresql_version }}/docker
+    {%- endif %}
     volumes:
       {%- if cookiecutter.postgresql_version|int >= 18 %}
       - production_postgres_data:/var/lib/postgresql/{{ cookiecutter.postgresql_version }}/docker
@@ -96,10 +98,8 @@ services:
 
   redis:
     image: docker.io/redis:7.2
-    {% if cookiecutter.use_celery == 'y' %}
     volumes:
       - production_redis_data:/data
-    {% endif %}
 
 
   {%- if cookiecutter.use_celery == 'y' %}
@@ -179,6 +179,8 @@ services:
   {%- endif %}
 
 {%- if cookiecutter.use_bundled_traefik == 'n' %}
+
+
 networks:
   default:
     driver: bridge
