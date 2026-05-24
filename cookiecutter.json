@@ -15,7 +15,7 @@
   ],
   "username_type": ["username", "email"],
   "timezone": "Asia/Kolkata",
-  "windows": "n",
+  "windows": "y",
   "editor": ["VS Code", "PyCharm", "None"],
   "use_docker": "y",
   "postgresql_version": ["18", "17", "16", "15", "14"],
