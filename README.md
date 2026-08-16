@@ -43,4 +43,26 @@ To update the main branch to the latest changes in upstream:
 git rebase myupstream
 ```
 
-4. Push changes to github
+Resolve any commits and commit changes. Do not push or pull to remote.
+
+4. If you have resolved and merged all conflicts, this command will return nothing
+
+```sh
+git rebase --continue
+```
+
+Do not push or pull to remote. Your remote branch might have different edits and will throw errors.
+
+4. First inspect what the remote has:
+
+```sh
+git log --oneline HEAD..origin/mychangesTest
+```
+
+If those commits are your old pre-rebase commits, push:
+
+5. Push changes to github
+
+```sh
+git push --force-with-lease origin mychangesTest
+```
