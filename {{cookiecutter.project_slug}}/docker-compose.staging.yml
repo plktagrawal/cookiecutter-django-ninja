@@ -110,7 +110,7 @@ services:
       - production_redis_data:/data
 
 
-  {%- if cookiecutter.use_mailpit == 'y' %}
+  {%- if cookiecutter.mail_catcher == 'Mailpit' %}
   mailpit:
     image: docker.io/axllent/mailpit:latest
     container_name: {{ cookiecutter.project_slug }}_staging_mailpit
