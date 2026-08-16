@@ -82,6 +82,7 @@ if settings.DEBUG:
             kwargs={"exception": Exception("Page not Found")},
         ),
         path("500/", default_views.server_error),
+        path("silk/", include("silk.urls", namespace="silk")),
     ]
     if "debug_toolbar" in settings.INSTALLED_APPS:
         import debug_toolbar
