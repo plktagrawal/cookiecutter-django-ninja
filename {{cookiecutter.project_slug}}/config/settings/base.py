@@ -94,6 +94,7 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.mfa",
     "allauth.socialaccount",
+    "simple_history",
 {%- if cookiecutter.use_celery == 'y' %}
     "django_celery_beat",
 {%- endif %}
@@ -175,6 +176,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "simple_history.middleware.HistoryRequestMiddleware",
 ]
 
 # STATIC
@@ -409,5 +411,11 @@ WEBPACK_LOADER = {
 }
 
 {%- endif %}
+
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+# Django simple history settings
+SIMPLE_HISTORY_HISTORY_ID_USE_UUID = True
+SIMPLE_HISTORY_DATE_INDEX = "Composite"
+SIMPLE_HISTORY_REVERT_DISABLED = True
